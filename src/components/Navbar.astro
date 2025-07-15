@@ -1,0 +1,72 @@
+<nav class="bg-[#f2f3f4] px-6 py-3 flex items-center justify-between">
+  	<!-- Botón y logo -->
+  	<div class="flex items-center gap-4">
+  		<button id="menu-button" class="text-gray-600 text-xl focus:outline-none">
+    		<!-- Ícono hamburguesa -->
+    		<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      			<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    		</svg>
+  		</button>
+
+  		<!-- Logo como imagen -->
+  		<img src="/logo.png" alt="Logo Bris Hotel Perú" class="h-14 object-contain" />
+	</div>
+
+  	<!-- Teléfono y botón de reserva -->
+  	<div class="hidden md:flex items-center gap-6">
+    	<div class="flex items-center text-[#54463e]">
+      		<i class="fa-solid fa-phone mr-3"></i>
+      		<span class="text-sm font-medium">+51 940 948 536</span>
+    	</div>
+
+    	<a href="#book" class="bg-[#54463e] text-white text-sm font-semibold px-5 py-2 rounded shadow hover:bg-[#54463e] transition">
+      		RESERVAR AHORA
+    	</a>
+  	</div>
+</nav>
+
+<!-- Menú lateral (off-canvas) -->
+<div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-[#f2f3f4] shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+  	<div class="p-6 flex flex-col gap-4">
+    	<button id="close-button" class="self-end text-gray-600">
+      		<!-- Ícono cerrar -->
+      		<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        		<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      		</svg>
+    	</button>
+
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Inicio</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Habitaciones</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Servicios</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Ubicación</a>
+    	<a href="#book" class="bg-[#54463e] text-white px-4 py-2 rounded text-center w-max hover:bg-[#54463e] transition">Reservar</a>
+  	</div>
+</div>
+
+<!-- Fondo oscuro al abrir el menú -->
+<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+<!-- Script para abrir/cerrar -->
+<script>
+  	const sidebar = document.getElementById('sidebar') as HTMLElement | null;
+	const overlay = document.getElementById('overlay') as HTMLElement | null;
+	const menuButton = document.getElementById('menu-button') as HTMLElement | null;
+	const closeButton = document.getElementById('close-button') as HTMLElement | null;
+
+	if (sidebar && overlay && menuButton && closeButton) {
+  		menuButton.addEventListener('click', () => {
+    		sidebar.classList.remove('-translate-x-full');
+    		overlay.classList.remove('hidden');
+  		});
+
+  		closeButton.addEventListener('click', () => {
+    		sidebar.classList.add('-translate-x-full');
+    		overlay.classList.add('hidden');
+  		});
+
+  		overlay.addEventListener('click', () => {
+    		sidebar.classList.add('-translate-x-full');
+    		overlay.classList.add('hidden');
+  		});
+	}
+</script>
