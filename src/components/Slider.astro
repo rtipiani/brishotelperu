@@ -1,0 +1,173 @@
+<!-- SLIDER -->
+<div class="relative w-full overflow-hidden group h-[850px] md:h-[700px] sm:h-[350px]" id="slider">
+  <!-- Slides -->
+  <div id="slides" class="relative w-full h-full">
+    <!-- Slide 1 -->
+    <div class="absolute inset-0 flex items-center text-white opacity-0 transition-opacity duration-1000 slide">
+      <!-- Imagen de fondo con overlay oscuro dentro de una capa contenedora -->
+      <div class="absolute inset-0 z-[-1]">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./slide1.png');"></div>
+      </div>
+      <!-- Contenido -->
+      <div class="relative z-10 p-4 sm:p-6 md:p-10 text-left max-w-xl mx-4 sm:mx-10 lg:ml-36 slide-content">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold font-satisfy mb-3" style="font-family: 'Satisfy', cursive;">
+          Bienvenidos a Bris Hotel
+        </h2>
+        <p class="mb-4 text-base sm:text-lg md:text-xl">
+          Tu descanso perfecto en el corazón de Perú.
+        </p>
+        <a href="#book" class="bg-white text-[#5a3d37] font-semibold px-4 py-2 sm:px-5 sm:py-2 rounded hover:bg-[#4d322d] hover:text-white transition">
+          Reservar Ahora
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="absolute inset-0 flex items-center text-white opacity-0 transition-opacity duration-1000 slide">
+      <div class="absolute inset-0 z-[-1]">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./slide2.png');"></div>
+      </div>
+      <div class="relative z-10 p-4 sm:p-6 md:p-10 text-left max-w-xl mx-4 sm:mx-10 lg:ml-36 slide-content">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold font-satisfy mb-3" style="font-family: 'Satisfy', cursive;">
+          Habitaciones Confortables
+        </h2>
+        <p class="mb-4 text-base sm:text-lg md:text-xl">
+          Ambientes pensados para tu relax y comodidad.
+        </p>
+        <a href="#book" class="bg-white text-[#5a3d37] font-semibold px-4 py-2 sm:px-5 sm:py-2 rounded hover:bg-[#4d322d] hover:text-white transition">
+          Reservar Ahora
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="absolute inset-0 flex items-center text-white opacity-0 transition-opacity duration-1000 slide">
+      <div class="absolute inset-0 z-[-1]">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('./slide3.png');"></div>
+      </div>
+      <div class="relative z-10 p-4 sm:p-6 md:p-10 text-left max-w-xl mx-4 sm:mx-10 lg:ml-36 slide-content">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold font-satisfy mb-3" style="font-family: 'Satisfy', cursive;">
+          Servicio de Primera
+        </h2>
+        <p class="mb-4 text-base sm:text-lg md:text-xl">
+          Atención personalizada que te hará sentir como en casa.
+        </p>
+        <a href="#book" class="bg-white text-[#5a3d37] font-semibold px-4 py-2 sm:px-5 sm:py-2 rounded hover:bg-[#4d322d] hover:text-white transition">
+          Reservar Ahora
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones -->
+  <button id="prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 rounded z-10 hover:scale-110 transition-transform">
+    &#10094;
+  </button>
+  <button id="next" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl px-4 py-2 rounded z-10 hover:scale-110 transition-transform">
+    &#10095;
+  </button>
+
+  <!-- Indicadores -->
+  <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-4" id="indicators"></div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.getElementById("slides");
+        const indicatorsContainer = document.getElementById("indicators");
+        const nextButton = document.getElementById("next");
+        const prevButton = document.getElementById("prev");
+        const slider = document.getElementById("slider");
+
+        // Verifica que todos los elementos existan
+        if (!slides || !indicatorsContainer || !nextButton || !prevButton || !slider) {
+            console.warn("Algunos elementos no fueron encontrados en el DOM.");
+            return;
+        }
+
+        // Type assertion para asegurar que ya no son null
+        const safeSlides = slides as HTMLElement;
+        const safeIndicatorsContainer = indicatorsContainer as HTMLElement;
+        const safeNextButton = nextButton as HTMLButtonElement;
+        const safePrevButton = prevButton as HTMLButtonElement;
+        const safeSlider = slider as HTMLElement;
+
+        const totalSlides: number = safeSlides.children.length;
+        let currentIndex: number = 0;
+        let intervalId: ReturnType<typeof setInterval>;
+
+        function showSlide(index: number): void {
+            const slideElements = document.querySelectorAll('.slide') as NodeListOf<HTMLElement>;
+            const contentElements = document.querySelectorAll('.slide-content') as NodeListOf<HTMLElement>;
+
+            slideElements.forEach((slide, i) => {
+                const content = contentElements[i];
+
+                if (i === index) {
+                    slide.style.opacity = '1';
+                    slide.style.zIndex = '1';
+                    setTimeout(() => {
+                        content.classList.add('show');
+                    }, 200);
+                } else {
+                    slide.style.opacity = '0';
+                    slide.style.zIndex = '0';
+                    content.classList.remove('show');
+                }
+            });
+
+            updateIndicators(index);
+        }
+
+        function updateIndicators(index: number): void {
+            Array.from(safeIndicatorsContainer.children).forEach((dot, i) => {
+                const element = dot as HTMLElement;
+                element.classList.toggle('bg-white', i === index);
+                element.classList.toggle('bg-gray-400', i !== index);
+            });
+        }
+
+        // Crear indicadores
+        for (let i = 0; i < totalSlides; i++) {
+            const dot: HTMLButtonElement = document.createElement('button');
+            dot.className = 'w-3 h-3 rounded-full bg-gray-400 hover:bg-white transition-all';
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                showSlide(currentIndex);
+            });
+            safeIndicatorsContainer.appendChild(dot);
+        }
+
+        safeNextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        });
+
+        safePrevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        });
+
+        function startAutoSlide(): void {
+            intervalId = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+            }, 5000);
+        }
+
+        function stopAutoSlide(): void {
+            clearInterval(intervalId);
+        }
+
+        safeSlider.addEventListener('mouseenter', stopAutoSlide);
+        safeSlider.addEventListener('mouseleave', startAutoSlide);
+
+        // Inicializar
+        showSlide(currentIndex);
+        startAutoSlide();
+    });
+</script>

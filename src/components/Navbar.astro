@@ -1,72 +1,94 @@
-<nav class="bg-[#f2f3f4] px-6 py-3 flex items-center justify-between">
-  	<!-- Botón y logo -->
-  	<div class="flex items-center gap-4">
-  		<button id="menu-button" class="text-gray-600 text-xl focus:outline-none">
-    		<!-- Ícono hamburguesa -->
-    		<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      			<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-    		</svg>
-  		</button>
+<!-- NAVBAR SOLO PARA MÓVILES -->
+<nav class="bg-[#5a3d37] px-6 py-3 flex items-center justify-between fixed top-0 w-full z-50 shadow md:hidden">
+  	<!-- Ícono de teléfono -->
+  	<div class="text-white">
+    	<i class="fa-solid fa-phone"></i>
+  	</div>
 
-  		<!-- Logo como imagen -->
-  		<img src="/logo.png" alt="Logo Bris Hotel Perú" class="h-14 object-contain" />
-	</div>
+  	<!-- Logo centrado -->
+  	<img src="/logo-white.png" alt="Logo Bris Hotel Perú" class="h-14 mx-auto object-contain">
 
-  	<!-- Teléfono y botón de reserva -->
-  	<div class="hidden md:flex items-center gap-6">
-    	<div class="flex items-center text-[#54463e]">
+  	<!-- Botón hamburguesa -->
+  	<button id="menu-button" class="text-white text-xl focus:outline-none">
+    	<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      		<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+    	</svg>
+  	</button>
+</nav>
+
+<!-- NAVBAR SOLO PARA DESKTOP -->
+<nav class="bg-[#5a3d37] px-6 py-3 hidden md:flex items-center justify-between fixed top-0 w-full z-50 shadow">
+  	<!-- Contenedor izquierdo: hamburguesa + logo -->
+  	<div class="flex items-center gap-x-6">
+    	<!-- Botón hamburguesa (sigue visible) -->
+    	<button id="menu-button" class="text-white text-xl focus:outline-none">
+      		<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        		<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+      		</svg>
+    	</button>
+
+    	<!-- Logo -->
+    	<img src="/logo-white.png" alt="Logo Bris Hotel Perú" class="h-14 object-contain">
+  	</div>
+
+  	<!-- Teléfono y botón reservar -->
+  	<div class="flex items-center gap-6 ml-auto">
+    	<div class="flex items-center text-white">
       		<i class="fa-solid fa-phone mr-3"></i>
       		<span class="text-sm font-medium">+51 940 948 536</span>
     	</div>
-
-    	<a href="#book" class="bg-[#54463e] text-white text-sm font-semibold px-5 py-2 rounded shadow hover:bg-[#54463e] transition">
+    	<a href="#book" class="bg-white text-[#5a3d37] text-sm font-semibold px-5 py-2 rounded shadow hover:bg-[#f9b015] hover:text-white transition">
       		RESERVAR AHORA
     	</a>
   	</div>
 </nav>
 
+<!-- Espaciador para el nav fijo -->
+<div class="h-20"></div>
+
 <!-- Menú lateral (off-canvas) -->
 <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-[#f2f3f4] shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
   	<div class="p-6 flex flex-col gap-4">
     	<button id="close-button" class="self-end text-gray-600">
-      		<!-- Ícono cerrar -->
       		<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         		<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       		</svg>
     	</button>
 
-    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Inicio</a>
-    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Habitaciones</a>
-    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Servicios</a>
-    	<a href="#" class="text-gray-700 font-medium hover:text-[#54463e]">Ubicación</a>
-    	<a href="#book" class="bg-[#54463e] text-white px-4 py-2 rounded text-center w-max hover:bg-[#54463e] transition">Reservar</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#5a3d37]">Inicio</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#5a3d37]">Habitaciones</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#5a3d37]">Servicios</a>
+    	<a href="#" class="text-gray-700 font-medium hover:text-[#5a3d37]">Ubicación</a>
+    	<a href="#book" class="bg-[#5a3d37] text-white px-4 py-2 rounded text-center w-max hover:bg-[#4d322d] transition">Reservar Ahora</a>
   	</div>
 </div>
 
-<!-- Fondo oscuro al abrir el menú -->
-<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+<!-- Fondo oscuro -->
+<div id="overlay" class="fixed inset-0 bg-[#5a3d37]/20 hidden z-40"></div>
 
-<!-- Script para abrir/cerrar -->
+<!-- Script funcional -->
 <script>
-  	const sidebar = document.getElementById('sidebar') as HTMLElement | null;
-	const overlay = document.getElementById('overlay') as HTMLElement | null;
-	const menuButton = document.getElementById('menu-button') as HTMLElement | null;
-	const closeButton = document.getElementById('close-button') as HTMLElement | null;
+  	document.addEventListener('DOMContentLoaded', () => {
+    	const sidebar = document.getElementById('sidebar');
+    	const overlay = document.getElementById('overlay');
+    	const menuButtons = document.querySelectorAll('#menu-button');
+    	const closeButton = document.getElementById('close-button');
 
-	if (sidebar && overlay && menuButton && closeButton) {
-  		menuButton.addEventListener('click', () => {
-    		sidebar.classList.remove('-translate-x-full');
-    		overlay.classList.remove('hidden');
-  		});
+    	if (!sidebar || !overlay || !closeButton) return;
 
-  		closeButton.addEventListener('click', () => {
-    		sidebar.classList.add('-translate-x-full');
-    		overlay.classList.add('hidden');
-  		});
+    	menuButtons.forEach(button => {
+      		button.addEventListener('click', () => {
+        		sidebar.classList.remove('-translate-x-full');
+        		overlay.classList.remove('hidden');
+      		});
+    	});
 
-  		overlay.addEventListener('click', () => {
-    		sidebar.classList.add('-translate-x-full');
-    		overlay.classList.add('hidden');
-  		});
-	}
+    	const closeSidebar = () => {
+      		sidebar.classList.add('-translate-x-full');
+      		overlay.classList.add('hidden');
+    	};
+
+    	closeButton.addEventListener('click', closeSidebar);
+    	overlay.addEventListener('click', closeSidebar);
+  	});
 </script>
