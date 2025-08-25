@@ -1,0 +1,51 @@
+<section class="bg-[#f5eeee] py-20">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-14 items-start">
+
+    <!-- Columna izquierda: título -->
+    <div class="flex flex-col justify-center text-center md:text-left">
+      <h2 class="text-4xl font-[cursive] text-[#6e3a3a] mb-4">Stay up to date</h2>
+      <p class="text-gray-600 text-sm leading-relaxed">Subscribe to our newsletter and never miss the latest news, offers, and updates.</p>
+    </div>
+
+    <!-- Columna central: formulario -->
+    <div>
+      <form class="bg-white shadow-lg rounded-xl p-8 space-y-6 border border-gray-100">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          <!-- Input nombre -->
+          <div class="flex flex-col">
+            <label for="name" class="uppercase text-[11px] tracking-wider text-gray-600 mb-2">Your Name*</label>
+            <input type="text" id="name" placeholder="Enter Your Full Name"
+              class="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-pink-700 transition">
+          </div>
+
+          <!-- Input email -->
+          <div class="flex flex-col">
+            <label for="email" class="uppercase text-[11px] tracking-wider text-gray-600 mb-2">Your Email*</label>
+            <input type="email" id="email" placeholder="Enter Your Email"
+              class="border border-gray-300 rounded-md px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-pink-700 transition">
+          </div>
+        </div>
+
+        <!-- Botón -->
+        <button type="submit" 
+          class="w-full bg-[#8a4a4a] text-white px-6 py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-[#6e3a3a] shadow-md transition">
+          Sign up for Newsletter
+        </button>
+      </form>
+    </div>
+
+    <!-- Columna derecha: info contacto -->
+    <div class="text-sm space-y-8 md:pl-6">
+      <div>
+        <h3 class="uppercase tracking-wider font-semibold mb-2 text-gray-800">Location</h3>
+        <p class="text-gray-600 leading-relaxed">3033 Fifth Avenue, San Diego, California 92103, United States</p>
+      </div>
+      <div>
+        <h3 class="uppercase tracking-wider font-semibold mb-2 text-gray-800">Reception</h3>
+        <p class="text-gray-600 leading-relaxed">Daily from 9 AM to 10 PM</p>
+      </div>
+    </div>
+
+  </div>
+</section>
